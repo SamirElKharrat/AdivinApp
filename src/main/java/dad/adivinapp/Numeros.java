@@ -63,6 +63,27 @@ public class Numeros extends Application  {
 
 		alert.showAndWait();
 	}
+	
+	private void onComprobarButton(ActionEvent e) {
+
+		intentos++;
+		try {
+			int numero = Integer.parseInt(tfNumero.getText());
+			if (numero < numeroAleatorio)
+				fallo(0, numero);
+			else if (numero > numeroAleatorio)
+				fallo(1, numero);
+			else {
+				acierto();
+				Comienzo();
+
+			}
+
+		} catch (NumberFormatException error) {
+			error();
+		}
+
+	}
 
 
 }
