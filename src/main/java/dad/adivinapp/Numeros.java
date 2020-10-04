@@ -84,6 +84,44 @@ public class Numeros extends Application  {
 		}
 
 	}
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		Comienzo();
+
+		// creamos un cuadro de texto
+		tfNumero = new TextField();
+		tfNumero.setPrefColumnCount(5);
+		tfNumero.setPromptText("Introduce un nombre");// ponemos un texto de ayuda
+		tfNumero.setMaxWidth(150);// establecemos el tamaño maximo del componente
+
+		// creamos una etiqueta
+		Label Introduccion = new Label();
+		Introduccion.setText("Introduce un número del 1 al 100");
+
+		// creamos un botón
+		botonComprobar = new Button();
+		botonComprobar.setText("Comprobar");
+		botonComprobar.setDefaultButton(true);
+		botonComprobar.setOnAction(e -> onComprobarButton(e));
+
+		// creamos un panel con disposición vertical
+		VBox root = new VBox();
+		root.setSpacing(5);
+		root.setAlignment(Pos.CENTER);
+		root.getChildren().addAll(Introduccion, tfNumero, botonComprobar);
+
+		// creamos la escena
+		Scene escena = new Scene(root, 320, 200);
+
+		// configuramos la ventana
+		primaryStage.setScene(escena);
+		primaryStage.setTitle("AdivinApp");
+		primaryStage.show();
+	}
+
+	public static void main(String[] args) {
+		launch(args);
+	}
 
 
 }
