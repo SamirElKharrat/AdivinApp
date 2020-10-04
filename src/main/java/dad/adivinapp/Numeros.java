@@ -33,14 +33,29 @@ public class Numeros extends Application  {
 
 	}
 
-	private void fallo(int menormayor, int numero) {
-		String mensaje = "El número es " + ((menormayor == 1) ? "menor" : "mayor") + " que " + numero;
+	private void falloMayor() {
+		int numero = Integer.parseInt(tfNumero.getText());
 		Alert alert = new Alert(AlertType.WARNING);
-		alert.setTitle("AdivinApp");
+		
+	    alert.setTitle("AdivinApp");
 		alert.setHeaderText("¡Fallo!");
-		alert.setContentText(mensaje);
+		alert.setContentText("El numero es mayor que " + numero);
 
 		alert.showAndWait();
+
+
+	}
+	
+	private void falloMenor() {
+		int numero = Integer.parseInt(tfNumero.getText());
+		Alert alert = new Alert(AlertType.WARNING);
+		
+	    alert.setTitle("AdivinApp");
+		alert.setHeaderText("¡Fallo!");
+		alert.setContentText("El numero es menor que " + numero);
+
+		alert.showAndWait();
+
 
 	}
 
@@ -70,9 +85,9 @@ public class Numeros extends Application  {
 		try {
 			int numero = Integer.parseInt(tfNumero.getText());
 			if (numero < numeroAleatorio)
-				fallo(0, numero);
-			else if (numero > numeroAleatorio)
-				fallo(1, numero);
+				falloMayor();
+			else if(numero > numeroAleatorio)
+				falloMenor();
 			else {
 				acierto();
 				Comienzo();
