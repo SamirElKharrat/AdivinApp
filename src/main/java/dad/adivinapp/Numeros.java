@@ -1,5 +1,7 @@
 package dad.adivinapp;
 
+import java.util.Optional;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
@@ -7,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -15,6 +18,7 @@ import javafx.stage.Stage;
 public class Numeros extends Application  {
 
 	private Button botonComprobar;
+	private Button botonAcabar;
 	private TextField tfNumero;
 	private int numeroAleatorio;
 	private int intentos;
@@ -63,11 +67,10 @@ public class Numeros extends Application  {
 
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("AdivinApp");
-		alert.setHeaderText("Lo has conseguido!");
+		alert.setHeaderText("¡Has Ganado!");
 		alert.setContentText("En solo " + intentos + " intentos.");
 
 		alert.showAndWait();
-
 	}
 
 	private void error() {
@@ -97,8 +100,14 @@ public class Numeros extends Application  {
 		} catch (NumberFormatException error) {
 			error();
 		}
+		
 
 	}
+	
+    private void onAcabarButton(ActionEvent a) {
+    	System.exit(0);
+    }
+    
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Comienzo();
@@ -118,12 +127,17 @@ public class Numeros extends Application  {
 		botonComprobar.setText("Comprobar");
 		botonComprobar.setDefaultButton(true);
 		botonComprobar.setOnAction(e -> onComprobarButton(e));
+		
+		botonAcabar = new Button();
+		botonAcabar.setText("Cerrar");
+		botonAcabar.setDefaultButton(true);
+		botonAcabar.setOnAction(a -> onAcabarButton(a));
 
 		// creamos un panel con disposición vertical
 		VBox root = new VBox();
 		root.setSpacing(5);
 		root.setAlignment(Pos.CENTER);
-		root.getChildren().addAll(Introduccion, tfNumero, botonComprobar);
+		root.getChildren().addAll(Introduccion, tfNumero, botonComprobar, botonAcabar);
 
 		// creamos la escena
 		Scene escena = new Scene(root, 320, 200);
@@ -134,9 +148,13 @@ public class Numeros extends Application  {
 		primaryStage.show();
 	}
 
+
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
+
+
 
 
 }
