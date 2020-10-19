@@ -1,6 +1,5 @@
 package dad.adivinapp;
 
-import java.util.Optional;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
